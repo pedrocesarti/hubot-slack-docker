@@ -17,4 +17,12 @@ The variables set on runnning is used to connect on Slack account, Slack channel
 | Hubot_SLACK_TEAM | Account for connection team. | 
 | Hubot_SLACK_BOTNAME | Name for user used for Hubot to connect to account. | 
 
+Some Hubot scripts
+
+| Variable  | Function |
+|---------|:--------:|
+| HUBOT_GOOGLE_CSE_ID | Id to connect a Google accountToken generate for Slack integration. | 
+| HUBOT_GOOGLE_CSE_KEY | Account for connection team. | 
+
+
 
