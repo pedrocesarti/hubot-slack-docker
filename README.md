@@ -12,7 +12,7 @@ docker run --name mybot -it -e HUBOT_GOOGLE_CSE_ID='################' -e HUBOT_G
 The variables set on runnning is used to connect on Slack account, Slack channel and Google Search API. Some Hubot scripts 
 
 | Variable  | Function |
-|:---------:|:--------:|
+|---------|:--------:|
 | HUBOT_SLACK_TOKEN | Token generate for Slack integration. | 
 | Hubot_SLACK_TEAM | Account for connection team. | 
 | Hubot_SLACK_BOTNAME | Name for user used for Hubot to connect to account. | 
