@@ -4,7 +4,7 @@ Container running GitHub Hubot with a plugin to connect to a Slack team. Some en
 This repository is connect to DockerHub to create an image automaticaly. So you just need run a docker container where the source is **pedrocesarti/hubot**.
 
 ## Running container
-To run this container, you should running the command above:
+To run this container, you should running the command available below:
 
 ```shell
 docker run --name mybot -it  -e HUBOT_SLACK_TOKEN='#######' -e Hubot_SLACK_TEAM='#######' -e Hubot_SLACK_BOTNAME='#######' -d pedrocesarti/hubot-slack
