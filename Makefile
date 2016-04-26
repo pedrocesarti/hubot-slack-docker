@@ -4,3 +4,4 @@ build:
 	docker build -t hubot-slack .
 delete:
 	docker rm -f mybot
+
