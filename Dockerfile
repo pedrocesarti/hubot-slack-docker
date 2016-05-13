@@ -9,10 +9,24 @@ ENV OWNER "Pedro Cesar"
 ENV DESCRIPTION "Hubot teste."
 
 # INSTALL SYSTEM TOOLS
-RUN apt-get update
-RUN apt-get install -y nodejs npm redis-server
-RUN apt-get install nodejs-legacy
-RUN sudo npm install -g yo generator-hubot
+RUN apt-get update && \
+	apt-get install -y --no-install-recommends \
+	autoconf \
+	build-essential \
+	ca-certificates \
+	curl \
+	git-core
+
+RUN git clone git://github.com/OiNutter/nodenv.git /root/.nodenv && \
+	git clone git://github.com/OiNutter/node-build.git /root/.nodenv/plugins/node-build
+
+ENV PATH /root/.rbenv/shims:/root/.rbenv/bin:/root/.nodenv/shims:/root/.nodenv/bin:$PATH
+
+RUN nodenv install 0.11.9 && \
+	nodenv global 0.11.9 && \
+	nodenv rehash
+
+RUN sudo npm install -g yo@1.5.0 generator-hubot
 
 # USER MANAGEMENT FOR APP
 RUN useradd -d "$DIRECTORY" -ms /bin/bash hubot
@@ -32,4 +46,3 @@ RUN chmod +x "$DIRECTORY"/init_app.sh
 
 # START EVERYTHING AND WATCHING LOGS
 CMD bash /home/hubot/init_app.sh && tail -f /home/hubot/hubot.log
-
