@@ -11,22 +11,24 @@ ENV DESCRIPTION "Hubot teste."
 # INSTALL SYSTEM TOOLS
 RUN apt-get update && \
 	apt-get install -y --no-install-recommends \
-	autoconf \
-	build-essential \
-	ca-certificates \
-	curl \
-	git-core
+autoconf \
+build-essential \
+ca-certificates \
+curl \
+git-core
 
 RUN git clone git://github.com/OiNutter/nodenv.git /root/.nodenv && \
-	git clone git://github.com/OiNutter/node-build.git /root/.nodenv/plugins/node-build
+git clone git://github.com/OiNutter/node-build.git /root/.nodenv/plugins/node-build
 
-ENV PATH /root/.rbenv/shims:/root/.rbenv/bin:/root/.nodenv/shims:/root/.nodenv/bin:$PATH
+ENV PATH /root/.nodenv/shims:/root/.nodenv/bin:$PATH
 
-RUN nodenv install 0.11.9 && \
-	nodenv global 0.11.9 && \
-	nodenv rehash
+RUN nodenv install 5.0.0
+RUN nodenv global 5.0.0 
+RUN nodenv rehash
 
-RUN sudo npm install -g yo@1.5.0 generator-hubot
+RUN npm config set unsafe-perm true
+RUN npm cache clean && npm install -g yo
+RUN npm install -g generator-hubot
 
 # USER MANAGEMENT FOR APP
 RUN useradd -d "$DIRECTORY" -ms /bin/bash hubot
