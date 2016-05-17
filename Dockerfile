@@ -7,38 +7,39 @@ ENV DIRECTORY "/home/hubot"
 ENV NAME "cyberdyne"
 ENV OWNER "Pedro Cesar"
 ENV DESCRIPTION "Hubot teste."
+ENV NODE_VERSION "5.0.0"
 
 # INSTALL SYSTEM TOOLS
 RUN apt-get update && \
-	apt-get install -y --no-install-recommends \
+apt-get install -y \
+sudo \
 autoconf \
 build-essential \
 ca-certificates \
 curl \
 git-core
 
-RUN git clone git://github.com/OiNutter/nodenv.git /root/.nodenv && \
-git clone git://github.com/OiNutter/node-build.git /root/.nodenv/plugins/node-build
+# USER MANAGEMENT FOR APP
+RUN useradd -d "$DIRECTORY" -ms /bin/bash hubot
+RUN echo "hubot ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
+WORKDIR "$DIRECTORY"
+USER hubot
 
-ENV PATH /root/.nodenv/shims:/root/.nodenv/bin:$PATH
+RUN git clone git://github.com/OiNutter/nodenv.git /home/hubot/.nodenv && \
+git clone git://github.com/OiNutter/node-build.git /home/hubot/.nodenv/plugins/node-build
 
-RUN nodenv install 5.0.0
-RUN nodenv global 5.0.0 
+ENV PATH /home/hubot/.nodenv/shims:/home/hubot/.nodenv/bin:$PATH
+
+RUN nodenv install "$NODE_VERSION"
+RUN nodenv global "$NODE_VERSION"
 RUN nodenv rehash
 
 RUN npm config set unsafe-perm true
 RUN npm cache clean && npm install -g yo
 RUN npm install -g generator-hubot
 
-# USER MANAGEMENT FOR APP
-RUN useradd -d "$DIRECTORY" -ms /bin/bash hubot
-RUN echo "hubot	ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
-WORKDIR "$DIRECTORY"
-
 # INSTALL APP
-USER hubot
-RUN yo hubot --owner="$OWNER" --name="$NAME" --description="DESCRIPTION" --defaults
-RUN npm install hubot-scripts
+RUN .nodenv/versions/"$NODE_VERSION"/bin/yo hubot --owner="$OWNER" --name="$NAME" --description="DESCRIPTION" --defaults
 RUN npm install hubot-slack
 
 # STARTING APP AND SERVICES
