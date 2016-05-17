@@ -40,7 +40,6 @@ RUN npm install -g generator-hubot
 
 # INSTALL APP
 RUN .nodenv/versions/"$NODE_VERSION"/bin/yo hubot --owner="$OWNER" --name="$NAME" --description="DESCRIPTION" --defaults
-RUN npm install hubot-slack
 
 # STARTING APP AND SERVICES
 ADD conf/ "$DIRECTORY"
