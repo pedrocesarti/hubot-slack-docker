@@ -26,16 +26,17 @@ RUN echo "hubot ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
 WORKDIR "$DIRECTORY"
 USER hubot
 
+# DOWNLOAD NODENV AND PATH
 RUN git clone git://github.com/OiNutter/nodenv.git /home/hubot/.nodenv && \
 git clone git://github.com/OiNutter/node-build.git /home/hubot/.nodenv/plugins/node-build
-
-
 ENV PATH /home/hubot/.nodenv/shims:/home/hubot/.nodenv/bin:/home/hubot/.nodenv/versions/$NODE_VERSION/bin:$PATH
 
+# INSTALL NODENV VERSION
 RUN nodenv install "$NODE_VERSION"
 RUN nodenv global "$NODE_VERSION"
 RUN nodenv rehash
 
+# CREATE HUBOT BASE
 RUN npm config set unsafe-perm true
 RUN npm cache clean && npm install -g yo
 ADD conf/ "$DIRECTORY"
