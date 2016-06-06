@@ -46,7 +46,7 @@ RUN npm install generator-hubot
 RUN yo hubot --owner="$OWNER" --name="$NAME" --description="DESCRIPTION" --defaults
 
 # STARTING APP AND SERVICES
-RUN echo "sudo /usr/bin/redis-server /etc/redis/redis.conf ; /home/hubot/bin/hubot --adapter slack > /home/hubot/hubot.log 2>&1 &" > "$DIRECTORY"/init_app.sh
+RUN echo "sudo /usr/bin/redis-server /etc/redis/redis.conf ; /home/hubot/bin/hubot --adapter slack > /home/hubot/hubot.log 2>&1 &" > /home/hubot/init_app.sh
 #RUN echo "sudo /usr/bin/redis-server /etc/redis/redis.conf ; "$DIRECTORY"/bin/hubot --adapter slack > "$DIRECTORY"/hubot.log 2>&1 &" > "$DIRECTORY"/init_app.sh
 RUN chmod +x "$DIRECTORY"/init_app.sh 
 
