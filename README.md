@@ -27,4 +27,3 @@ Some Hubot scripts used to use Google API to make searches on Internet, however 
 | **HUBOT_GOOGLE_CSE_ID** | Id to connect a Google accountToken generate for Slack integration. | 
 | **HUBOT_GOOGLE_CSE_KEY** | Account for connection team. | 
 
-
