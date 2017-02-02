@@ -9,7 +9,8 @@
 "hubot-redis-brain",
 "hubot-rules",
 "hubot-shipit",
-"hubot-jenkins"
+"hubot-jenkins",
+"hubot-deploy"
 
 ]
 

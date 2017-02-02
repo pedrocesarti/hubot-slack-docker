@@ -18,6 +18,7 @@
 		"hubot": "~2.18.0",
 		"hubot-slack": "~3.4.2",
 		"hubot-victory": ">= 0.0.0",
+		"hubot-deploy": ">= 0.0.0",
 		"hubot-jenkins": ">= 0.0.0"
 
 	},
