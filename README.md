@@ -28,3 +28,4 @@ Some Hubot scripts used to use Google API to make searches on Internet, however 
 | **HUBOT_GOOGLE_CSE_KEY** | Account for connection team. | 
 
 Enjoy! :)
+.
