@@ -1,3 +1,7 @@
+:rotating_light: This project is outdated/abandoned/archived and will not be updated anymore. :rotating_light:
+
+-------------
+
 # hubot-slack-docker
 Container running GitHub Hubot with a plugin to connect to a Slack team. Some environment variables have to be set to permit connection with a Slack account in a specific channel.
 
